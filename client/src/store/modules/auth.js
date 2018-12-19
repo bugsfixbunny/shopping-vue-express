@@ -7,6 +7,7 @@ import AuthenticationService from '../../services/AuthenticationService'
         token: localStorage.getItem('token') || '',
         identity : localStorage.getItem('identity') || '',
         userId:'',
+        role_id: localStorage.getItem('role_id') || '',
         validation_messages:[]
    };
     const mutations = {
@@ -40,6 +41,7 @@ import AuthenticationService from '../../services/AuthenticationService'
                 const identity = resp.data.user
                 state.userId = resp.data.user.id
                 localStorage.setItem('token', token)
+                localStorage.setItem('role_id', resp.data.user.RoleId)
                 localStorage.setItem('identity', identity)
                 axios.defaults.headers.common['Authorization'] = token
                 commit('auth_success', token)
@@ -70,6 +72,8 @@ import AuthenticationService from '../../services/AuthenticationService'
         async logout({commit}){
             try{
                 await localStorage.removeItem('token')
+                await localStorage.removeItem('identity')
+                await localStorage.removeItem('role_id')
                 commit('logout')
                 delete axios.defaults.headers.common['Authorization']
             }
@@ -80,6 +84,7 @@ import AuthenticationService from '../../services/AuthenticationService'
     };
     const getters = {
         isLoggedIn(state) { return state.token },
+        role_id(state) { return state.role_id },
         statusAuth (state) { return  state.statusAuth } ,
         token(state) { return state.token },
         identity(state) { return state.identity },

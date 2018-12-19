@@ -21,18 +21,14 @@ module.exports = {
         token: jwtSignUser(userJson)
       })
     } catch (err) {
-        err.errors.forEach(function (err){
-            error.push(err.message)
-        })
-          console.log(error)
       res.status(400).send({
-        error
+        error : "Already registered"
       })
     }
   },
   async login (req, res) {
     try {
-        const {email, password} = req.body
+        const {email, password} = req.body.data
         const user = await User.findOne({
             where: {
                 email: email

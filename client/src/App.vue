@@ -5,7 +5,7 @@
         <v-list>
           <v-list-tile>
             <v-list-tile-title class="title">
-              Application 
+              Application {{ role_id }}
             </v-list-tile-title>
           </v-list-tile>
         </v-list>
@@ -55,13 +55,14 @@
         computed: {
             ...mapGetters({
                 isLoggedIn : 'isLoggedIn',
-                token: 'token'
+                token: 'token',
+                role_id: 'role_id'
+
             })
         },
 
         methods: {
             logout() {
-                console.log('1')
                 this.$store.dispatch('logout')
                 this.$router.push('/')
             }
