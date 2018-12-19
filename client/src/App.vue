@@ -1,38 +1,72 @@
 <template>
-  <v-app>
-    <v-toolbar app>
-      <v-toolbar-title class="headline text-uppercase">
-        <span>Vuetify</span>
-        <span class="font-weight-light">MATERIAL DESIGN</span>
-      </v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-btn
-        flat
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-      >
-        <span class="mr-2">Latest Release</span>
-      </v-btn>
-    </v-toolbar>
+  <v-app id="inspire">
+    <v-navigation-drawer absolute permanent md4>
+      <v-toolbar flat>
+        <v-list>
+          <v-list-tile>
+            <v-list-tile-title class="title">
+              Application 
+            </v-list-tile-title>
+          </v-list-tile>
+        </v-list>
+      </v-toolbar>
 
-    <v-content>
-      <HelloWorld/>
-    </v-content>
+      <v-divider></v-divider>
+
+      <v-list dense class="pt-0">
+        <v-list-tile v-for="item in notLoggedInMenuItems" v-if="!isLoggedIn" :key="item.title">
+          <v-list-tile-action><v-icon>{{ item.icon }}</v-icon></v-list-tile-action>
+          <v-list-tile-content><v-list-tile :to="item.link" :click="item.click">{{ item.title }}</v-list-tile></v-list-tile-content>
+        </v-list-tile>
+
+        <!--<v-list-tile v-for="item in loggedinMenuItems" v-if="isLoggedIn" :key="item.title">-->
+          <!--<v-list-tile-action><v-icon>{{ item.icon }}</v-icon></v-list-tile-action>-->
+          <!--<v-list-tile-content><v-list-tile :to="item.link" :click="item.click">{{ item.title }}</v-list-tile></v-list-tile-content>-->
+        <!--</v-list-tile>-->
+
+        <v-list-tile v-if="isLoggedIn">
+          <v-list-tile-action><v-icon>lock_open</v-icon></v-list-tile-action>
+          <v-list-tile-content><v-list-tile to="/logout"  @click="logout()">Logout</v-list-tile></v-list-tile-content>
+        </v-list-tile>
+
+      </v-list>
+
+
+    </v-navigation-drawer>
+    <router-view md6></router-view>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
+    import {mapGetters} from 'vuex';
+    import Vuetify from 'vuetify'
+    export default {
+        data() {
+            return {
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  },
-  data () {
-    return {
-      //
+                sideNav:false,
+                notLoggedInMenuItems:[
+                    {icon: 'person', title: 'Login', link: '/login', click:''},
+                    {icon: 'face', title: 'Sign up', link: '/register', click:''},
+                ]
+            }
+        },
+
+        computed: {
+            ...mapGetters({
+                isLoggedIn : 'isLoggedIn',
+                token: 'token'
+            })
+        },
+
+        methods: {
+            logout() {
+                console.log('1')
+                this.$store.dispatch('logout')
+                this.$router.push('/')
+            }
+        }
+
     }
-  }
-}
 </script>
+
