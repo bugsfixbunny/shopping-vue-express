@@ -10,45 +10,46 @@ function jwtSignUser (user) {
 }
 
 module.exports = {
-  async register (req, res) {
-      var error = []
-      try {
+    async register (req, res) {
+        var error = []
+    try {
+        console.log(req.body)
       const user = await User.create(req.body.data)
-
-          const userJson = user.toJSON()
-          res.send({
+      const userJson = user.toJSON()
+      res.send({
         user: userJson,
         token: jwtSignUser(userJson)
       })
+        
     } catch (err) {
-      res.status(400).send({
-        error : "Already registered"
-      })
-    }
-  },
+        res.status(400).send({
+            error : "Already registered"
+        })
+        }
+    },
   async login (req, res) {
     try {
-        const {email, password} = req.body.data
+        const {email, password} = req.body.data;
         const user = await User.findOne({
             where: {
                 email: email
             }
-        })
+        });
 
         if (!user) {
             return res.status(403).send({
                 error: 'The login information was incorrect'
             })
         }
-        //
-        // const isPasswordValid = await user.comparePassword(password)
-        // if (!isPasswordValid) {
-        //     return res.status(403).send({
-        //         error: 'The login information was incorrect'
-        //     })
-        // }
 
-        const userJson = user.toJSON()
+        const isPasswordValid = await user.comparePassword(password)
+        if (!isPasswordValid) {
+            return res.status(403).send({
+                error: 'The login information was incorrect'
+            })
+        }
+
+        const userJson = user.toJSON();
         res.send({
             user: userJson,
             token: jwtSignUser(userJson)
