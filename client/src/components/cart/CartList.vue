@@ -4,11 +4,13 @@
       <v-flex v-for="product in productCart" :key="product.id" xs12 sm4 lg4>
         <Cart :product="product"></Cart>
       </v-flex>
-      <v-flex v-if="productCart" text-xs-right>
-        <v-btn>
-          <router-link to="checkout">Procceed to checkout</router-link>
-        </v-btn>
-      </v-flex>
+      <v-btn
+        v-if="!productCart.length == 0"
+        depressed
+        class="text-uppercase"
+        color="primary black--text"
+        @click="gotoCheckout"
+      >Procceed to checkout</v-btn>
     </v-layout>
   </v-container>
 </template>
@@ -21,11 +23,14 @@ import { mapGetters } from "vuex";
 import { mapActions } from "vuex";
 
 export default {
-  data() {
-    return {};
+  methods: {
+    gotoCheckout() {
+      this.$router.push({
+        name: "checkout",
+        params: this.productCart
+      });
+    }
   },
-  created() {},
-
   components: {
     Cart
   },
