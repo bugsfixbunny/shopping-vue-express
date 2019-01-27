@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "start": "nodemon src/app.js",
-    "seed": "node ../src/seed"
+    "seed": "node ./seed"
   },
   "keywords": [],
   "author": "",

@@ -4,6 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     })
 
     Role.associate = function (models) {
+        Role.hasMany(models.User, { onDelete: 'cascade'})
     }
 
     return Role

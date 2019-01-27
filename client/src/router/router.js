@@ -1,8 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '../views/Home.vue'
+import Products from '../components/products/Products.vue'
+import ProductDetails from '../components/products/ProductDetails.vue'
 import Login from '../components/auth/Login.vue'
 import Register from '../components/auth/Register.vue'
+import CartList from '../components/cart/CartList.vue'
 
 Vue.use(Router)
 
@@ -10,8 +12,11 @@ export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
-    {path: '/', name: 'home', component: Home},
-    {path: '/login', name: 'login', component: Login},
-    {path: '/register', name: 'register', component: Register},
+    { path: '/', name: 'products', component: Products },
+    { path: '/login', name: 'login', component: Login },
+    { path: '/register', name: 'register', component: Register },
+    { path: '/product/:id', name: 'productDetails', component: ProductDetails },
+    { path: 'cart/', name: 'cartList', component: CartList },
+
   ]
 })

@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     hooks: {
       beforeCreate: hashPassword,
-      beforeUpdate: hashPassword,
+      beforeBulkUpdate: hashPassword,
     }
   })
 
@@ -38,7 +38,7 @@ module.exports = (sequelize, DataTypes) => {
   }
 
   User.associate = function (models) {
-      User.belongsTo(models.Role)
+      User.belongsTo(models.Role, { onDelete: 'cascade'})
   }
 
   return User

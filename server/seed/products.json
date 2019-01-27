@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Apple Iphone X",
+    "price": 890,
+    "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/IPhone_X_vector.svg/2000px-IPhone_X_vector.svg.png",
+    "quantity": 11
+  },
+  {
+    "name": "Dell Inspiron 5000",
+    "price": 500,
+    "img": "https://upload.wikimedia.org/wikipedia/commons/e/e3/Dell_Inspiron_15_5000_Series_i5547-3750sLV_15-Inch_Laptop.jpg",
+    "quantity": 5
+  },
+  {
+    "name": "Dell Inspiron 5000",
+    "price": 500,
+    "img": "https://upload.wikimedia.org/wikipedia/commons/e/e3/Dell_Inspiron_15_5000_Series_i5547-3750sLV_15-Inch_Laptop.jpg",
+    "quantity": 22
+  },
+  {
+    "name": "LG G7",
+    "price": 220,
+    "img": "https://upload.wikimedia.org/wikipedia/commons/f/fc/LG_G7_%EC%94%BD%ED%81%90_%2841219619715%29.jpg",
+    "quantity": 31
+  }
+]
