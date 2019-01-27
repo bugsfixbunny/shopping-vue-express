@@ -1,5 +1,6 @@
 const AuthenticationController = require('./controllers/AuthenticationController')
 const ProductsController = require('./controllers/ProductsController')
+const OrdersController = require('./controllers/OrdersController')
 
 module.exports = (app) => {
     app.post('/register',
@@ -11,5 +12,7 @@ module.exports = (app) => {
         app.get('/product/:id',
             ProductsController.show),
         app.put('/product/:id',
-            ProductsController.update)
+            ProductsController.update),
+        app.post('/checkout',
+            OrdersController.create)
 }

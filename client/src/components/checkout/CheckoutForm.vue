@@ -20,19 +20,34 @@
       {{ statusOrder }}
       <v-btn color="pink" flat @click="snackbar = false">Close</v-btn>
     </v-snackbar>
-    <v-form @submit.prevent="sendOrder()">
+    <form @submit.prevent="sendOrder()">
       <v-container>
         <v-layout wrap>
           <v-flex xs12 sm6>
-            <v-text-field v-model="checkout.name" label="Name" required></v-text-field>
+            <v-text-field v-model="checkout.name" v-validate="'required'" label="Name" required></v-text-field>
 
-            <v-text-field v-model="checkout.surname" label="Surname" required></v-text-field>
+            <v-text-field
+              v-model="checkout.surname"
+              v-validate="'required'"
+              label="Surname"
+              required
+            ></v-text-field>
 
-            <v-text-field v-model="checkout.email" label="Email" required></v-text-field>
+            <v-text-field
+              v-model="checkout.email"
+              v-validate="'required | email'"
+              label="Email"
+              required
+            ></v-text-field>
 
-            <v-text-field v-model="checkout.mobile" label="Mobile" required></v-text-field>
+            <v-text-field v-model="checkout.mobile" v-validate="'required'" label="Mobile" required></v-text-field>
 
-            <v-text-field v-model="checkout.address" label="Address" required></v-text-field>
+            <v-text-field
+              v-model="checkout.address"
+              v-validate="'required'"
+              label="Address"
+              required
+            ></v-text-field>
           </v-flex>
         </v-layout>
       </v-container>
@@ -40,7 +55,7 @@
       <v-card-actions class="pb-3 justify-center">
         <v-btn color="success black--text" type="submit">Submit</v-btn>
       </v-card-actions>
-    </v-form>
+    </form>
   </v-card>
 </template>
 
@@ -70,10 +85,17 @@ export default {
   },
   methods: {
     sendOrder() {
-      console.log(this.$route.params);
-      const order = this.$route.params;
-      this.$store.dispatch("checkout/sendOrder", order);
-      this.quantity = 0;
+      const items = this.$route.params;
+      items.map(item => {
+        let order = { ProductId: item.id, quantity: item.quantity };
+        order.name = this.checkout.name;
+        order.surname = this.checkout.surname;
+        order.email = this.checkout.email;
+        order.mobile = this.checkout.mobile;
+        order.address = this.checkout.address;
+
+        this.$store.dispatch("checkout/sendOrder", order);
+      });
     }
   }
 };
