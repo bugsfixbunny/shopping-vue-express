@@ -20,34 +20,25 @@
       {{ statusOrder }}
       <v-btn color="pink" flat @click="snackbar = false">Close</v-btn>
     </v-snackbar>
-    <form @submit.prevent="sendOrder()">
+    <v-form ref="form" @submit.prevent="sendOrder()" lazy-validation>
       <v-container>
         <v-layout wrap>
           <v-flex xs12 sm6>
-            <v-text-field v-model="checkout.name" v-validate="'required'" label="Name" required></v-text-field>
+            <v-text-field v-model="checkout.name" :rules="Rules" required label="Name"></v-text-field>
+
+            <v-text-field v-model="checkout.surname" :rules="Rules" required label="Surname"></v-text-field>
+
+            <v-text-field v-model="checkout.email" :rules="emailRules" required label="Email"></v-text-field>
 
             <v-text-field
-              v-model="checkout.surname"
+              v-model="checkout.mobile"
+              :rules="Rules"
               v-validate="'required'"
-              label="Surname"
+              label="Mobile"
               required
             ></v-text-field>
 
-            <v-text-field
-              v-model="checkout.email"
-              v-validate="'required | email'"
-              label="Email"
-              required
-            ></v-text-field>
-
-            <v-text-field v-model="checkout.mobile" v-validate="'required'" label="Mobile" required></v-text-field>
-
-            <v-text-field
-              v-model="checkout.address"
-              v-validate="'required'"
-              label="Address"
-              required
-            ></v-text-field>
+            <v-text-field v-model="checkout.address" :rules="Rules" required label="Address"></v-text-field>
           </v-flex>
         </v-layout>
       </v-container>
@@ -55,7 +46,7 @@
       <v-card-actions class="pb-3 justify-center">
         <v-btn color="success black--text" type="submit">Submit</v-btn>
       </v-card-actions>
-    </form>
+    </v-form>
   </v-card>
 </template>
 
@@ -71,11 +62,13 @@ export default {
       timeout: 4000,
       snackbar: false,
       showError: false,
-      checkout: { name: "", surname: "", email: "", mobile: "", address: "" }
+      checkout: { name: "", surname: "", email: "", mobile: "", address: "" },
+      emailRules: [
+        v => !!v || "E-mail is required",
+        v => /.+@.+/.test(v) || "E-mail must be valid"
+      ],
+      Rules: [v => !!v || "Field is required"]
     };
-  },
-  created() {
-    console.log(this.$route.params);
   },
   computed: {
     ...mapGetters({
@@ -93,8 +86,12 @@ export default {
         order.email = this.checkout.email;
         order.mobile = this.checkout.mobile;
         order.address = this.checkout.address;
-
-        this.$store.dispatch("checkout/sendOrder", order);
+        if (this.$refs.form.validate()) {
+          this.snackbar = true;
+          this.$store.dispatch("checkout/sendOrder", order);
+          this.$refs.form.reset();
+        }
+        this.showError = true;
       });
     }
   }

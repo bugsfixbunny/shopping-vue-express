@@ -3,8 +3,9 @@ const { Order } = require('../models')
 module.exports = {
     async create(req, res) {
         try {
-            console.log(req.body)
-            const order = await Order.create(req.body)
+            const order = req.body;
+            order.UserId = req.user.dataValues.id
+            await Order.create(order)
             res.send({
                 order,
             })

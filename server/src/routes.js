@@ -1,6 +1,7 @@
 const AuthenticationController = require('./controllers/AuthenticationController')
 const ProductsController = require('./controllers/ProductsController')
 const OrdersController = require('./controllers/OrdersController')
+const isAuthenticated = require('../middlewares/isAuthenticated')
 
 module.exports = (app) => {
     app.post('/register',
@@ -13,6 +14,6 @@ module.exports = (app) => {
             ProductsController.show),
         app.put('/product/:id',
             ProductsController.update),
-        app.post('/checkout',
+        app.post('/checkout', isAuthenticated,
             OrdersController.create)
 }

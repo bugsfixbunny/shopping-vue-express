@@ -35,11 +35,8 @@ const mutations = {
         const record = state.cartProductsId.find(element => element.id == productId); console.log(record)
 
         if (record.quantity > quantity) {
-            console.log(record.quantity)
-
             record.quantity -= quantity;
         } else {
-            console.log(record)
             state.cartProductsId.splice(state.cartProductsId.indexOf(record.id), 1);
         }
         state.cart_amount -= productPrice * quantity;

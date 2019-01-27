@@ -78,7 +78,7 @@
           </v-layout>
           <v-layout row>
             <v-flex xs12 sm6 offset-sm3>
-              <v-btn class="primary" type="submit">Register</v-btn>
+              <v-btn class="primary black--text" type="submit">Register</v-btn>
             </v-flex>
           </v-layout>
         </form>

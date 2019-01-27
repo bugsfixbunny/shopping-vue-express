@@ -3,8 +3,6 @@
     <v-tabs centered dark color="primary">
       <v-tabs-slider color="yellow"></v-tabs-slider>
 
-      <v-tab :to="{ name: 'products' }">Accueil</v-tab>
-
       <template v-if="!isLoggedIn">
         <v-tab :to="{ name: 'register' }">Inscription</v-tab>
 
