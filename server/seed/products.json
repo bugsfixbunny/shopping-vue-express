@@ -12,15 +12,27 @@
     "quantity": 5
   },
   {
-    "name": "Dell Inspiron 5000",
-    "price": 500,
-    "img": "https://upload.wikimedia.org/wikipedia/commons/e/e3/Dell_Inspiron_15_5000_Series_i5547-3750sLV_15-Inch_Laptop.jpg",
+    "name": "Macbook Pro Unibody",
+    "price": 1100,
+    "img": "https://upload.wikimedia.org/wikipedia/commons/1/1d/MacBook_Pro%2C_Late-2008.jpg",
     "quantity": 22
   },
   {
     "name": "LG G7",
-    "price": 220,
+    "price": 210,
     "img": "https://upload.wikimedia.org/wikipedia/commons/f/fc/LG_G7_%EC%94%BD%ED%81%90_%2841219619715%29.jpg",
+    "quantity": 31
+  },
+  {
+    "name": "Google Pixel 3",
+    "price": 240,
+    "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Pixel_2_and_Pixel_2_XL.svg/2000px-Pixel_2_and_Pixel_2_XL.svg.png",
+    "quantity": 31
+  },
+  {
+    "name": "Playstation 4",
+    "price": 250,
+    "img": "https://upload.wikimedia.org/wikipedia/commons/e/ec/Sony-PlayStation-4-PS4-Console-FR.jpg",
     "quantity": 31
   }
 ]

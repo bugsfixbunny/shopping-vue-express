@@ -4,9 +4,9 @@
       <v-tabs-slider color="yellow"></v-tabs-slider>
 
       <template v-if="!isLoggedIn">
-        <v-tab :to="{ name: 'register' }">Inscription</v-tab>
+        <v-tab :to="{ name: 'register' }">Register</v-tab>
 
-        <v-tab :to="{ name: 'login' }">Se connecter</v-tab>
+        <v-tab :to="{ name: 'login' }">Login</v-tab>
       </template>
 
       <template v-if="isLoggedIn">
