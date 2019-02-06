@@ -10,10 +10,6 @@ const actions = {
     buyProduct({ commit }, order) {
         commit('BUY_PRODUCT', order);
     },
-    setCart({ commit }, product) {
-        commit('SET_CART', product);
-    }
-
 };
 
 const mutations = {
