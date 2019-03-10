@@ -74,7 +74,7 @@ export default {
         await this.$store.dispatch("auth/login", this.user);
         this.showError = true;
         if (this.validation_messages == "") {
-          this.$router.push({ name: "home" });
+          this.$router.push({ name: "products" });
         }
       } catch (e) {
         console.log(e);

@@ -16,12 +16,12 @@
       </h3>
     </div>
     <br>
-    <div class="body">Gaming Laptop with I7, GT 1050</div>
     <v-flex sm2>
       <v-text-field
         type="number"
         placeholder="Quantity"
         v-model="quantity"
+        :error-messages="zeroQuantity ? errorQuantity : ''"
         :class="{danger: insufficientQuantity}"
       ></v-text-field>
     </v-flex>
@@ -45,9 +45,13 @@ export default {
   props: ["product"],
   data() {
     return {
-      quantity: 0
+      snackbar: false,
+      quantity: 0,
+      zeroQuantity: false,
+      errorQuantity: "Please add an amount"
     };
   },
+
   computed: {
     cart_amount() {
       return this.$store.getters.cart_amount;
@@ -58,14 +62,19 @@ export default {
   },
   methods: {
     buyProduct() {
-      const order = {
-        productId: this.product.id,
-        productPrice: this.product.price,
-        quantity: parseInt(this.quantity)
-      };
-      console.log(order);
-      this.$store.dispatch("cart/buyProduct", order);
-      this.quantity = 0;
+      if (this.quantity > 0) {
+        this.zeroQuantity = false;
+        const order = {
+          productId: this.product.id,
+          productPrice: this.product.price,
+          quantity: parseInt(this.quantity)
+        };
+        console.log(order);
+        this.$store.dispatch("cart/buyProduct", order);
+        this.quantity = 0;
+      } else {
+        this.zeroQuantity = true;
+      }
     }
   }
 };

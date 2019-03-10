@@ -34,6 +34,7 @@ module.exports = {
                     email: email
                 }
             });
+            console.log(req.body.data)
 
             if (!user) {
                 return res.status(403).send({

@@ -25,8 +25,9 @@ npm start
 ```
 Loading seeds in the backend
 ```
-cd seeds
-```
+cd seed
 node index.js
+```
+
 
 username: admin@test.com password: test for the user seed

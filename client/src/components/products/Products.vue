@@ -16,7 +16,13 @@ import { mapState } from "vuex";
 
 export default {
   data() {
-    return {};
+    return {
+      y: "top",
+      x: null,
+      mode: "",
+      timeout: 4000,
+      snackbar: false
+    };
   },
   created() {
     this.$store.dispatch("products/getProducts");
