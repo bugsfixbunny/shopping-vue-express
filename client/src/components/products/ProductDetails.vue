@@ -48,10 +48,6 @@ import { mapState } from "vuex";
 export default {
   data() {
     return {
-      y: "top",
-      x: null,
-      mode: "",
-      timeout: 4000,
       quantity: 0,
       tit: "",
       id: "",
@@ -84,7 +80,6 @@ export default {
           productPrice: this.product.price,
           quantity: parseInt(this.quantity)
         };
-        console.log(order);
         this.$store.dispatch("cart/buyProduct", order);
         this.quantity = 0;
       } else {

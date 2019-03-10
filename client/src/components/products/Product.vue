@@ -45,7 +45,6 @@ export default {
   props: ["product"],
   data() {
     return {
-      snackbar: false,
       quantity: 0,
       zeroQuantity: false,
       errorQuantity: "Please add an amount"
