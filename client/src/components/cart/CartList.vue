@@ -30,7 +30,6 @@ import { mapState } from "vuex";
 export default {
   methods: {
     gotoCheckout() {
-      console.log(this.token);
       if (!this.token) {
         this.$router.push({
           name: "login"
@@ -47,11 +46,9 @@ export default {
     Cart
   },
   computed: {
-    ...mapState({
-      token: "auth/token"
-    }),
     ...mapGetters({
-      productCart: "cart/productCart"
+      productCart: "cart/productCart",
+      token: "auth/token"
     })
   }
 };

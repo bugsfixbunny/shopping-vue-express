@@ -55,7 +55,6 @@ export default {
       errorQuantity: "Please add an amount"
     };
   },
-  created() {},
   created() {
     this.id = this.$route.params.id;
     this.$store.dispatch("products/getProduct", this.$route.params.id);
