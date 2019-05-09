@@ -1,9 +1,9 @@
 Shopping cart with a Login System and Checkout, built with Node.js, Vue.js and Vuetify.
 Using JWT Token for User Authorization.
 
-![alt text](https://raw.githubusercontent.com/antonispat10/Vue-Express-Shopping-Cart/master/server/public/images/products_photo.jpg) 
-![alt text](https://raw.githubusercontent.com/antonispat10/Vue-Express-Shopping-Cart/master/server/public/images/cart_photo.jpg) 
-![alt text](https://raw.githubusercontent.com/antonispat10/Vue-Express-Shopping-Cart/master/server/public/images/checkout_form.jpg) 
+![alt text](https://raw.githubusercontent.com/goldenmonster/shopping-vue-express/master/server/public/images/products_photo.jpg)
+![alt text](https://raw.githubusercontent.com/goldenmonster/shopping-vue-express/master/server/public/images/cart_photo.jpg)
+![alt text](https://raw.githubusercontent.com/goldenmonster/shopping-vue-express/master/server/public/images/checkout_form.jpg)
 
 
  ## Project setup
@@ -17,7 +17,7 @@ npm run serve
 ```
 BACK-END Node.js
 ```
-cd ../server 
+cd ../server
 ```
 npm install
 ```
